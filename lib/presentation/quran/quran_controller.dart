@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
-
-import 'package:quran_app/quran/quran_view.dart';
-import 'package:quran_app/detail_surah/detail_surah_view.dart';
+import 'package:quran_app/presentation/quran/quran_view.dart';
 
 class QuranController extends State<QuranView> {
+  static late QuranController instance;
+
+  late QuranView view;
   List surahList = [];
 
   @override
@@ -263,34 +264,5 @@ class QuranController extends State<QuranView> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Al-Qur'an")),
-      body: ListView.builder(
-        itemCount: surahList.length,
-        itemBuilder: (context, index) {
-          var item = surahList[index];
-
-          return ListTile(
-            leading: CircleAvatar(child: Text("${item['number']}")),
-            title: Text(item['name'] ?? ""),
-            subtitle: Text(
-              "${item['latin'] ?? ""} • ${item['totalAyat']} ayat",
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => DetailSurahView(
-                    surahNumber: item['number'],
-                    surahName: item['name'] ?? "",
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
+  Widget build(BuildContext context) => widget.build(context, this);
 }
