@@ -25,7 +25,7 @@ class DetailSurahView extends StatefulWidget {
             ),
             onPressed: () {
               controller.isMushafMode = !controller.isMushafMode;
-              controller.setState(() {});
+              // controller.setState(() {});
             },
           ),
           IconButton(
